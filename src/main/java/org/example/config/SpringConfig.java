@@ -24,6 +24,9 @@ import java.sql.SQLException;
 import java.util.Enumeration;
 import java.util.Objects;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  * @author AdamReign
  */
@@ -65,6 +68,11 @@ public class SpringConfig implements WebMvcConfigurer{
         resolver.setTemplateEngine(templateEngine());
         resolver.setCharacterEncoding("UTF-8");
         registry.viewResolver(resolver);
+    }
+
+    @Bean
+    public Logger logger() {
+        return LogManager.getLogger(getClass());
     }
 
     @Bean

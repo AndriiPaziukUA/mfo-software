@@ -4,8 +4,7 @@ import javax.validation.Valid;
 import org.example.dao.PersonDAO;
 import org.example.model.Person;
 import org.example.util.PersonValidator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,12 +23,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/people")
 public class PeopleController {
-    private static final Logger logger = LoggerFactory.getLogger(PeopleController.class);
+    private final Logger logger;
     private final PersonDAO personDAO;
     private final PersonValidator personValidator;
 
     @Autowired
-    public PeopleController(PersonDAO personDAO, PersonValidator personValidator) {
+    public PeopleController(Logger logger, PersonDAO personDAO, PersonValidator personValidator) {
+        this.logger = logger;
         this.personDAO = personDAO;
         this.personValidator = personValidator;
     }
