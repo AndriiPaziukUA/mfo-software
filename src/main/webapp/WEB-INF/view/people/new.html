@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ua" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New</title>
+</head>
+
+<body>
+<div>
+    <form th:method="POST" th:action="@{/people}" th:object="${person}">
+        <label for="name">Enter name:</label>
+        <input id="name" type="text" th:field="*{name}"/>
+        <div th:if="${#fields.hasErrors('name')}" style="color: red" th:errors="*{name}">Name error</div>
+        <br>
+        <label for="age">Enter age:</label>
+        <input id="age" type="number" th:field="*{age}" min="0" max="150" maxlength="3"/>
+        <div th:if="${#fields.hasErrors('age')}" style="color: red" th:errors="*{age}">Age error</div>
+        <br>
+        <label for="email">Enter email:</label>
+        <input id="email" type="text" th:field="*{email}"/>
+        <div th:if="${#fields.hasErrors('email')}" style="color: red" th:errors="*{email}">Email error</div>
+        <br>
+        <label for="address">Enter address:</label>
+        <input id="address" type="text" th:field="*{address}" placeholder="Ukraine, Kyiv, 000000"/>
+        <div th:if="${#fields.hasErrors('address')}" style="color: red" th:errors="*{address}">Address error</div>
+        <br>
+        <input type="submit" value="Create"/>
+    </form>
+</div>
+<br>
+<div>
+    <a href="/people">Back</a>
+</div>
+</body>
+</html>
